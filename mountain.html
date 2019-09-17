@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>mask字</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style type="text/css">
+    
+      *{margin: 0;padding: 0;}
+      html,body {
+        height: 100vh;
+        width: 100vw;
+      }
+      .preview{
+        position: relative;
+        width: 100%;
+        padding-top: 74.666%;
+        overflow: hidden;
+      }
+      .bg-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 74.666%;
+        width: 100%;
+        overflow: hidden;
+      }
+      .bg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          -webkit-filter: blur(3px);
+          filter: blur(3px);
+          z-index: -1;
+          background-position: center center;
+          background-size: cover;
+          box-sizing: border-box;
+          background-image: url(forest.jpg);
+      }
+      .mask-wrap {
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        top: 37%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        /* -webkit-animation: move 20s infinite; */
+        /* animation: move 20s infinite; */
+        background-image: url(forest.jpg);
+        background-size: cover;
+        background-position: center;
+        -webkit-mask-image: url(xunlei.png);
+        mask: url(xunlei.png);
+        -webkit-mask-size: cover;
+        mask-size: cover;
+        overflow: hidden;
+      }
+      .mask{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        -webkit-animation: move 10s infinite;
+        animation: move 10s infinite;
+      }
+      .mask:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 200%;
+        height: 400%;
+        background-image: url(forest.jpg);
+        background-repeat: repeat;
+        top: 0;
+        left: 0;
+      }
+      @-webkit-keyframes move {
+        0% {
+          transform: translateX(0%) translateY(0%);
+        }
+        25% {
+          transform: translateX(-100%) translateY(0%);
+        }
+
+        50% {
+          transform: translateX(0%) translateY(0%);
+        }
+
+        75% {
+          transform: translateX(0%) translateY(-190%);
+        }
+
+        100% {
+          transform: translateX(0%) translateY(20%);
+        }
+      }
+
+      @keyframes move {
+        0% {
+          transform: translateX(0%) translateY(0%);
+        }
+        25% {
+          transform: translateX(-100%) translateY(0%);
+        }
+
+        50% {
+          transform: translateX(0%) translateY(0%);
+        }
+
+        75% {
+          transform: translateX(0%) translateY(-190%);
+        }
+
+        100% {
+          transform: translateX(0%) translateY(20%);
+        }
+      }
+  </style>
+
+</head>
+<body>
+<!-- 黑色透明，白色不透明 -->
+<div class="preview">
+  <div class="bg-wrap">
+    <div class="bg"></div>
+    <div class="mask-wrap">
+      <div class="mask"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

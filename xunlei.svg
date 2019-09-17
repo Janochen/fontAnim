@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="200" viewBox="0 0 320 200">
+  <defs>
+    <clipPath id="clip-迅雷">
+      <rect width="320" height="200"/>
+    </clipPath>
+  </defs>
+  <g id="迅雷" clip-path="url(#clip-迅雷)">
+    <rect width="320" height="200" fill="#fff"/>
+    <text id="迅雷-2" data-name="迅雷" transform="translate(24 147)" fill="#2ea7e0" font-size="140" font-family="FZY4JW--GB1-0, FZCuYuan-M03S"><tspan x="0" y="0">迅雷</tspan></text>
+  </g>
+</svg>
