@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SVG Text Mask Video Fill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100%;
+      font-family: Helvetica,STHeiti STXihei,Microsoft JhengHei,Microsoft YaHei,Arial;
+      background-image: url(bg.jpg);
+      background-size: 100% auto;
+    }  
+    #text{
+      font-size: 40px;
+      color: #fff;
+      text-align:center;
+      font-weight: bold;
+      padding-top: 60px;
+    }
+    #text .big{
+      font-size: 60px;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="text"><div>i</div><div>P</div><div>h</div><div>o</div><div>n</div><div>e</div><div>1</div><div>1</div><br/><div class='big'>预</div><div class='big'>约</div><div class='big'>开</div><div class='big'>启</div></div>
+<script src="TweenMax.min.js"></script>
+<script src="SplitText.min.js"></script>
+<script type="text/javascript">
+  mySplitText = new SplitText("#text",{type:"chars"}); //{type:"chars,words,lines"}打散成字、词、行
+  chars = mySplitText.chars; //获取字  mySplitText.words获取词 mySplitText.lines获取行
+  TweenMax.set("#text",{perspective:400});
+  TweenMax.staggerFrom(chars,0.8,{opacity:0,scale:0,y:80,rotationX:180, transformOrigin:"0% 50% -50", ease:Back.easeOut}, 0.1);
+</script>
+</body>
+</html>
