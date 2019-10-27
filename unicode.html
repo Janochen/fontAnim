@@ -1,0 +1,120 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+	<title>字符与Unicode编码转换</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.wrap{
+			height: 100%;
+			background: url('unicodebg.jpg');
+			-webkit-background-size: 100% 100%;
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+		}
+		.inner{
+			height: 100%;
+			display: flex;
+			-webkit-align-items:center;
+  			align-items:center;
+  			-webkit-justify-content:center;
+  			justify-content:center;
+  			flex-direction: column;
+  			background-color: rgba(0,0,0,.6);
+  			flex-wrap: wrap;
+		}
+		#stringInput{
+			display: block;
+			width: 400px;
+			height: 42px;
+			color: #fff;
+			border:1px solid #aaa;
+			text-indent: .5em;
+			font-size: 20px;
+			background-color: transparent;
+			margin-bottom: 20px;
+		}
+		.title{
+			width: 400px;
+			font-size: 16px;
+			color: #aaa;
+			margin-bottom: 10px;
+		}
+		#elUnicodeText{
+			width: 400px;
+			font-size: 20px;
+			line-height: 25px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			height: 100px;
+			color: #fff;
+			margin-bottom: 6px;
+			word-break:break-all;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="inner">
+		<input type="text" id='stringInput' />
+		<div class="title">Unicode编码：</div>
+		<div id="elUnicodeText"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var unicodeHelper = (function () {
+	        function UnicodeHelper() {
+	        }
+
+	        UnicodeHelper.prototype.enUnicode = function (str) {
+	            var rs = "";
+	            for (var i = 0; i < str.length; i++) {
+	                //补零。不补有些库无法正常解析。保持4位
+	                //slice负数参数，与其方向相反。start=-1为最后一个元素，end=-1为第一个元素。start必须
+	                rs += "\\u" + ("0000" + str.charCodeAt(i).toString(16)).slice(-4);
+	            }
+	            return rs;
+	        }
+	        UnicodeHelper.prototype.deUnicode = function (str) {
+	            var strArray = str.split("\\u");
+	            //防止\u开头或结尾，导致解析空串产生的“□”的结果
+	            if (str.startsWith("\\u")) {
+	                strArray = strArray.slice(1, strArray.length);
+	            }
+	            if (str.endsWith("\\u")) {
+	                strArray = strArray.slice(0, strArray.length - 1);
+	            }
+
+	            var rs = "";
+	            for (var i = 0; i < strArray.length; i++) {
+	                rs += String.fromCharCode(parseInt(strArray[i], 16));
+	            }
+	            return rs;
+	        }
+	        UnicodeHelper.prototype.deUnicode2 = function (str) {
+	            str = str.replace(/\\/gi, "%");
+	            //过时的语法
+	            return unescape(str);
+
+	        }
+
+	        return new UnicodeHelper();
+	    }());
+
+	    var str = document.getElementById('stringInput');
+	   	var elUnicodeText = document.getElementById("elUnicodeText");
+	    str.oninput = function(){
+	    	console.log('12')
+	    	var origin = str.value;
+	    	var unicode = unicodeHelper.enUnicode(origin);
+        	elUnicodeText.innerText = unicode;
+	    }
+	</script>
+</body>
+</html>
