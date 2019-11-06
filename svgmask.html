@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>svgmask</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style type="text/css">
+    
+      *{margin: 0;padding: 0;}
+      html,body {
+        height: 100vh;
+        width: 100vw;
+      }
+      
+  </style>
+
+</head>
+<body>
+<svg>
+  <defs>
+    <linearGradient id='gradient' gradientUnits="userSpaceOnUse" gradientTransform="rotate(0)" x2="800" y2="0">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop offset="0.25" stop-color="#FFFFFF" stop-opacity="0.25" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="1" />
+    </linearGradient>
+    <mask id="mask" maskUnits="userSpaceOnUse">
+      <rect width="800" height="300" fill="url(#gradient)" />
+    </mask>
+    <text id="txt" x="400" y="150" font-family="Arial Black" font-size="60" text-anchor="middle">Tony Tony Club</text>
+  </defs>
+  <use xlink:href="#txt" fill="#FFDD00" mask="url(#mask)" />
+</svg>
+<script src="TweenMax.min.js"></script>
+<script>
+  //循环播放动画
+  var tl = new TimelineMax({
+    repeat: -1
+  });
+
+  var gradient = document.getElementById('gradient'),
+      gradient_attr = gradient.getAttribute('gradientTransform');
+
+  for(var i = 0,l = 360;i <= 1;i++){
+    tl.to(gradient,0.01,{
+      attr:{
+        gradientTransform:'rotate('+ -i +')'
+      },
+      ease:Linear.easeInOut
+    })
+  }
+</script>
+</body>
+</html>

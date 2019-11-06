@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>stroke-dasharray</title>
+  <style>
+    *{margin: 0;padding:0;}
+    svg{
+      width: 500px;
+    }
+    #line{
+      stroke-dashoffset: 300;
+    }
+    svg:hover #line{
+    stroke-dashoffset: 0;
+  }
+  #line{
+      transition: all 2s;
+  }
+  </style>
+</head>
+
+<body>
+
+  <svg>
+    <line id="line" x1="30" y1="30" x2="330" y2="30" stroke-width="20" stroke="#7eab55" stroke-dasharray="300,300" />
+  </svg>
+
+</body>
+
+</html>

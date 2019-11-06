@@ -22,6 +22,9 @@
       font-weight: bold;
       padding-top: 60px;
     }
+    #text div{
+      display: none;
+    }
     #text .big{
       font-size: 60px;
     }
@@ -30,13 +33,17 @@
 </head>
 <body>
   <div id="text"><div>i</div><div>P</div><div>h</div><div>o</div><div>n</div><div>e</div><div>1</div><div>1</div><br/><div class='big'>预</div><div class='big'>约</div><div class='big'>开</div><div class='big'>启</div></div>
+<script src="jq.js"></script>
 <script src="TweenMax.min.js"></script>
 <script src="SplitText.min.js"></script>
 <script type="text/javascript">
+setTimeout(function(){
+  $('#text div').show();
   mySplitText = new SplitText("#text",{type:"chars"}); //{type:"chars,words,lines"}打散成字、词、行
   chars = mySplitText.chars; //获取字  mySplitText.words获取词 mySplitText.lines获取行
   TweenMax.set("#text",{perspective:400});
   TweenMax.staggerFrom(chars,0.8,{opacity:0,scale:0,y:80,rotationX:180, transformOrigin:"0% 50% -50", ease:Back.easeOut}, 0.1);
+},1000)
 </script>
 </body>
 </html>
